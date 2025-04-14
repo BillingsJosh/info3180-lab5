@@ -1,3 +1,4 @@
+import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -16,6 +17,7 @@ def create_app():
     app.config.from_object(Config)
     if not os.path.exists(app.config['UPLOAD_FOLDER']):
         os.makedirs(app.config['UPLOAD_FOLDER'])
+    print("UPLOAD_FOLDER IS:", app.config['UPLOAD_FOLDER'])
     db.init_app(app)
     migrate.init_app(app, db)
     csrf.init_app(app)
